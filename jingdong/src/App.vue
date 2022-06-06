@@ -1,4 +1,18 @@
 <template>
+  <div class="wrapper">
+    <div class="position">
+      <span class="iconfont position__icon">&#xe619;</span>
+      北京理工大学国防科技园2号楼10层
+      <span class="iconfont position_notice">&#xe60b;</span>
+    </div>
+    <div class="search">
+      <span class="iconfont">&#xe62d;</span>
+      <span class="search__text">山姆会员商店优惠商品</span>
+    </div>
+    <div class="banner">
+      <img class="banner__img" src="http://www.dell-lee.com/imgs/vue3/banner.jpg">
+    </div>
+  </div>
   <div class="docker">
     <div class="docker__item docker__item--active">
       <div class="iconfont">&#xe6f3;</div>
@@ -20,6 +34,63 @@
 </template>
 
 <style lang="scss">
+@import "./style/viriables";
+@import "style/mixins";
+.wrapper{
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: .5rem;
+  right: 0;
+  padding: 0 .18rem;
+}
+
+.position{
+  position: relative;
+  padding: .16rem .24rem .16rem 0;
+  line-height: .22rem;
+  font-size: .16rem;
+  @include ellipsis;
+  .position__icon{
+    position: relative;
+    top: .01rem;
+    font-size: .2rem;
+  }
+  .position_notice{
+    position: absolute;
+    right: 0;
+    top: .17rem;
+    font-size: .2rem;
+  }
+  color: $content-fontcolor;
+}
+
+.search{
+  margin-bottom: .12rem;
+  line-height: .32rem;
+  background: #F5F5F5;
+  color: #B7B7B7;
+  border-radius: .16rem;
+  .iconfont{
+    display: inline-block;
+    padding: 0 .08rem 0 .16rem;
+    font-size: .16rem;
+  }
+  &__text {
+    display: inline-block;
+    font-size: .14rem;
+  }
+}
+
+.banner{
+  height: 0;
+  overflow: hidden;
+  padding-bottom: 25.4%;
+  &__img{
+    width: 100%;
+  }
+}
+
 .docker{
   display: flex;
   box-sizing: border-box;
@@ -29,7 +100,7 @@
   bottom: 0;
   width: 100%;
   height: .49rem;
-  border-top: 1px solid #F1F1F1;
+  border-top: .01rem solid #F1F1F1;
   &__item{
     flex: 1;
     text-align: center;
@@ -42,7 +113,7 @@
     }
   }
   &__title{
-    font-size: 20px;
+    font-size: .2rem;
     transform: scale(.5,.5);
     transform-origin: center top;
   }
