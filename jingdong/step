@@ -1,0 +1,2 @@
+1.安装reset插件
+npm install normalize.css --save
