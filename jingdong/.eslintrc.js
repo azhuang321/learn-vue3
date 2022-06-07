@@ -12,6 +12,13 @@ module.exports = {
   },
   rules: {
     'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
-    'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off'
+    'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
+    // 关闭 组件必须多单词
+    'vue/multi-word-component-names': 'off',
+    // 单引号，双引号相关
+    quotes: ['warn', 'single'],
+    // quotes: ["error", "double",],
+    // 结尾是否必须要分号
+    semi: ['warn', 'always']
   }
-}
+};
