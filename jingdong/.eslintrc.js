@@ -19,6 +19,9 @@ module.exports = {
     quotes: ['warn', 'single'],
     // quotes: ["error", "double",],
     // 结尾是否必须要分号
-    semi: ['warn', 'always']
+    semi: ['warn', 'always'],
+    // 允许空行数
+    'no-multiple-empty-lines': ['error', { max: 2, maxEOF: 0 }]
+
   }
 };
