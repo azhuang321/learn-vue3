@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import { reactive } from 'vue';
+import { reactive, toRefs } from 'vue';
 
 export default {
   props: ['message']
@@ -11,32 +11,33 @@ export default {
 
 export const useToastEffect = () => {
   const toastData = reactive({
-    showToast: false,
+    show: false,
     toastMessage: ''
   });
 
   const showToast = (message) => {
-    toastData.showToast = true;
+    toastData.show = true;
     toastData.toastMessage = message;
     setTimeout(() => {
-      toastData.showToast = false;
+      toastData.show = false;
       toastData.toastMessage = '';
     }, 2000);
   };
 
-  return { toastData, showToast };
+  const { show, toastMessage } = toRefs(toastData);
+  return { show, toastMessage, showToast };
 };
 </script>
 
 <style lang="scss" scoped>
-.toast{
+.toast {
   position: fixed;
   left: 50%;
   top: 50%;
-  transform: translate(-50%,-50%);
+  transform: translate(-50%, -50%);
   padding: .1rem;
-  background: rgba(0,0,0,.35);
+  background: rgba(0, 0, 0, .35);
   border-radius: .05rem;
-  color: #fff;
+  color: #FFF;
 }
 </style>
