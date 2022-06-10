@@ -2,13 +2,14 @@
   <div class="wrapper">
     <img class="wrapper__img" src="http://www.dell-lee.com/imgs/vue3/user.png" alt="">
     <div class="wrapper__input">
-      <input class="wrapper__input__content" placeholder="用户名" v-model="username" >
+      <input class="wrapper__input__content" placeholder="用户名" v-model="data.username" >
     </div>
     <div class="wrapper__input">
-      <input class="wrapper__input__content" type="password" placeholder="请输入密码" v-model="password" >
+      <input class="wrapper__input__content" type="password" placeholder="请输入密码" v-model="data.password" >
     </div>
     <div class="wrapper__login-button" @click="handleLogin">登陆</div>
     <div class="wrapper__login-link" @click="handleRegisterClick">立即注册</div>
+    <Toast v-if="data.showToast" :message="data.toastMessage"></Toast>
   </div>
 </template>
 
@@ -17,17 +18,31 @@ import { useRouter } from 'vue-router';
 import axios from 'axios';
 import { reactive } from 'vue';
 import { post } from '../../utils/request';
+import Toast from '../../components/Toast';
 
 axios.defaults.headers.post['Content-Type'] = 'application/json';
 
 export default {
   name: 'Login',
+  components: { Toast },
   setup () {
     const data = reactive({
       username: '',
-      password: ''
+      password: '',
+      showToast: false,
+      toastMessage: ''
     });
     const router = useRouter();
+
+    const showToast = (message) => {
+      data.showToast = true;
+      data.toastMessage = message;
+      setTimeout(() => {
+        data.showToast = false;
+        data.toastMessage = '';
+      }, 2000);
+    };
+
     const handleLogin = async () => {
       try {
         const result = await post('/api/user/login', {
@@ -38,17 +53,17 @@ export default {
           localStorage.isLogin = true;
           router.push({ name: 'Home' });
         } else {
-          alert('登陆失败');
+          showToast('登陆失败');
         }
       } catch (e) {
-        alert('请求失败');
+        showToast('请求失败');
       }
     };
 
     const handleRegisterClick = () => {
       router.push({ name: 'Register' });
     };
-    return { handleLogin, handleRegisterClick };
+    return { handleLogin, handleRegisterClick, data };
   }
 };
 </script>
