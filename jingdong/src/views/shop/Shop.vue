@@ -1,10 +1,9 @@
 <template>
   <div class="wrapper">
     <div class="search">
-      <div
-        class="search__back iconfont"
-        @click="handleBackClick"
-      >&#xe6f2;</div>
+      <div class="search__back iconfont" @click="handleBackClick">
+        &#xe6f2;
+      </div>
       <div class="search__content">
         <span class="search__content__icon iconfont">&#xe62d;</span>
         <input
@@ -13,18 +12,19 @@
         />
       </div>
     </div>
-    <ShopInfo :item="item" :hideBorder="true" v-show="item.imgUrl" />
-    <Content></Content>
+    <ShopInfo :item="item" :hideBorder="true" v-show="item.imgUrl"/>
+    <Content />
   </div>
 </template>
 
 <script>
-import { useRoute, useRouter } from 'vue-router';
-import ShopInfo from '../../components/ShopInfo';
 import { reactive, toRefs } from 'vue';
+import { useRoute, useRouter } from 'vue-router';
 import { get } from '@/utils/request';
-import Content from '@/views/shop/Content';
+import ShopInfo from '../../components/ShopInfo';
+import Content from './Content';
 
+// 获取当前商铺信息
 const useShopInfoEffect = () => {
   const route = useRoute();
   const data = reactive({ item: {} });
@@ -41,31 +41,28 @@ const useShopInfoEffect = () => {
 // 点击回退逻辑
 const useBackRouterEffect = () => {
   const router = useRouter();
-  const handleBackClick = () => {
+  return () => {
     router.back();
   };
-  return handleBackClick;
 };
 
 export default {
   name: 'Shop',
-  components: { Content, ShopInfo },
+  components: { ShopInfo, Content },
   setup () {
     const { item, getItemData } = useShopInfoEffect();
-    getItemData();
     const handleBackClick = useBackRouterEffect();
+    getItemData();
     return { item, handleBackClick };
   }
 };
 </script>
 
 <style lang="scss" scoped>
-@import "../../style/viriables";
-
+@import '../../style/viriables.scss';
 .wrapper {
   padding: 0 .18rem;
 }
-
 .search {
   display: flex;
   margin: .14rem 0 .04rem 0;

@@ -18,7 +18,7 @@
     <div
       class="icons__item"
       v-for="item in iconsList"
-      :key = "item.imgName"
+      :key="item.desc"
     >
       <img
         class="icons__item__img"

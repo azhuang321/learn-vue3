@@ -2,7 +2,7 @@
   <div class="shop">
     <img :src="item.imgUrl" class="shop__img">
     <div
-      :class="{'shop__content': true, 'shop__content--bordered': hideBorder ? false: true}"
+      :class="{'shop__content': true, 'shop__content--bordered': !hideBorder}"
     >
       <div class="shop__content__title">{{item.name}}</div>
       <div class="shop__content__tags">
@@ -56,7 +56,7 @@ export default {
       margin: .08rem 0 0 0;
       line-height: .18rem;
       font-size: .13rem;
-      color: #E93B3B;
+      color: $hightlight-fontColor;
     }
   }
 }

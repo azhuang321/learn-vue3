@@ -19,6 +19,11 @@
             <span class="product__item__origin">&yen;66.6</span>
           </p>
         </div>
+        <div class="product__number">
+          <span class="product__number__minus">-</span>
+          0
+          <span class="product__number__plus">+</span>
+        </div>
       </div>
     </div>
   </div>
@@ -26,31 +31,33 @@
 
 <script>
 export default {
-  name: 'Content'
+
 };
 </script>
 
 <style lang="scss" scoped>
-.content{
+@import '../../style/viriables.scss';
+@import '../../style/mixins.scss';
+.content {
   display: flex;
   position: absolute;
   left: 0;
   right: 0;
   top: 1.5rem;
-  bottom: .2rem;
+  bottom: .5rem;
 }
-.category{
+.category {
   overflow-y: scroll;
   height: 100%;
   width: .76rem;
-  background: #F5F5F5;
+  background: $search-bgColor;
   &__item {
     line-height: .4rem;
     text-align: center;
     font-size: 14px;
     color: #333;
     &--active {
-      background: #FFF;
+      background: $bgColor;
     }
   }
 }
@@ -58,10 +65,14 @@ export default {
   overflow-y: scroll;
   flex: 1;
   &__item {
+    position: relative;
     display: flex;
     padding: .12rem 0;
     margin: 0 .16rem;
-    border-bottom: .01rem solid #F1F1F1;
+    border-bottom: .01rem solid $content-bgColor;
+    &__detail {
+      overflow: hidden;
+    }
     &__img {
       width: .68rem;
       height: .68rem;
@@ -71,18 +82,19 @@ export default {
       margin: 0;
       line-height: .2rem;
       font-size: .14rem;
-      color: #333;
+      color: $content-fontcolor;
+      @include ellipsis;
     }
     &__sales {
       margin: .06rem 0;
       font-size: .12rem;
-      color: #333;
+      color: $content-fontcolor;
     }
     &__price {
       margin: 0;
       line-height: .2rem;
       font-size: .14rem;
-      color: #E93B3B;
+      color: $hightlight-fontColor;
     }
     &__yen {
       font-size: .12rem;
@@ -91,10 +103,34 @@ export default {
       margin-left: .06rem;
       line-height: .2rem;
       font-size: .12rem;
-      color: #999;
+      color: $light-fontColor;
       text-decoration: line-through;
+    }
+    .product__number {
+      position: absolute;
+      right: 0;
+      bottom: .12rem;
+      &__minus, &__plus
+       {
+        display: inline-block;
+        width: .2rem;
+        height: .2rem;
+        line-height: .16rem;;
+        border-radius: 50%;
+        font-size: .2rem;
+        text-align: center;
+      }
+      &__minus {
+        border: .01rem solid $medium-fontColor;
+        color: $medium-fontColor;
+        margin-right: .05rem;
+      }
+      &__plus {
+        background: $btn-bgColor;
+        color: $bgColor;
+        margin-left: .05rem;
+      }
     }
   }
 }
-
 </style>

@@ -8,7 +8,7 @@
         v-model="username"
       />
     </div>
-    <div class="wrapper__input">
+     <div class="wrapper__input">
       <input
         type="password"
         class="wrapper__input__content"
@@ -26,10 +26,10 @@
 <script>
 import { reactive, toRefs } from 'vue';
 import { useRouter } from 'vue-router';
-import { post } from '../../utils/request';
+import { post } from '@/utils/request';
 import Toast, { useToastEffect } from '../../components/Toast';
 
-// 处理登录逻辑
+// 处理注册逻辑
 const useLoginEffect = (showToast) => {
   const router = useRouter();
   const data = reactive({ username: '', password: '' });
@@ -86,27 +86,28 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "../../style/viriables";
-.wrapper{
+@import '../../style/viriables.scss';
+
+.wrapper {
   position: absolute;
   top: 50%;
   left: 0;
   right: 0;
   transform: translateY(-50%);
-  &__img{
+  &__img {
     display: block;
     margin: 0 auto .4rem auto;
     width: .66rem;
     height: .66rem;
   }
-  &__input{
+  &__input {
     height: .48rem;
     margin: 0 .4rem .16rem .4rem;
     padding: 0 .16rem;
     background: #F9F9F9;
-    border: 1px solid rgba(0,0,0,0.1);
+    border: 1px solid rgba(0,0,0,0.10);
     border-radius: 6px;
-    &__content{
+    &__content {
       line-height: .48rem;
       border: none;
       outline: none;
@@ -119,19 +120,19 @@ export default {
       }
     }
   }
-  &__login-button{
+  &__login-button {
     margin: .32rem .4rem .16rem .4rem;
     line-height: .48rem;
     background: #0091FF;
     box-shadow: 0 .04rem .08rem 0 rgba(0,145,255,0.32);
     border-radius: .04rem;
-    color: #fff;
+    color: $bgColor;
     font-size: .16rem;
     text-align: center;
   }
-  &__login-link{
+  &__login-link {
     text-align: center;
-    font-size: .16rem;
+    font-size: .14rem;
     color: $content-notice-fontcolor;
   }
 }

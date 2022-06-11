@@ -6,14 +6,14 @@
       :key="item._id"
       :to="`/shop/${item._id}`"
     >
-      <ShopInfo :item="item"></ShopInfo>
+      <ShopInfo :item="item" />
     </router-link>
   </div>
 </template>
 
 <script>
 import { ref } from 'vue';
-import { get } from '../../utils/request';
+import { get } from '@/utils/request';
 import ShopInfo from '../../components/ShopInfo';
 
 const useNearbyListEffect = () => {
@@ -40,7 +40,6 @@ export default {
 
 <style lang="scss" scoped>
 @import '../../style/viriables.scss';
-
 .nearby {
   &__title {
     margin: .16rem 0 .02rem 0;

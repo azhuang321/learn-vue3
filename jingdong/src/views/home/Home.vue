@@ -1,9 +1,9 @@
 <template>
   <div class="wrapper">
-    <StaticPart></StaticPart>
-    <Nearby></Nearby>
+    <StaticPart />
+    <Nearby />
   </div>
-  <Docker></Docker>
+  <Docker />
 </template>
 
 <script>
