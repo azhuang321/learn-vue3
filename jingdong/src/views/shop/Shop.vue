@@ -13,16 +13,18 @@
       </div>
     </div>
     <ShopInfo :item="item" :hideBorder="true" v-show="item.imgUrl"/>
-    <Content />
+    <Content :shopName="item.name" />
+    <Cart />
   </div>
 </template>
 
 <script>
 import { reactive, toRefs } from 'vue';
-import { useRoute, useRouter } from 'vue-router';
-import { get } from '@/utils/request';
+import { useRouter, useRoute } from 'vue-router';
+import { get } from '../../utils/request';
 import ShopInfo from '../../components/ShopInfo';
 import Content from './Content';
+import Cart from './Cart';
 
 // 获取当前商铺信息
 const useShopInfoEffect = () => {
@@ -41,14 +43,15 @@ const useShopInfoEffect = () => {
 // 点击回退逻辑
 const useBackRouterEffect = () => {
   const router = useRouter();
-  return () => {
+  const handleBackClick = () => {
     router.back();
   };
+  return handleBackClick;
 };
 
 export default {
   name: 'Shop',
-  components: { ShopInfo, Content },
+  components: { ShopInfo, Content, Cart },
   setup () {
     const { item, getItemData } = useShopInfoEffect();
     const handleBackClick = useBackRouterEffect();
