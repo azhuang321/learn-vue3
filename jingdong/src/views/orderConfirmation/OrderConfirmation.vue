@@ -7,13 +7,13 @@
 </template>
 
 <script>
-import TopArea from './TopArea'
-import ProductList from './ProductList'
-import Order from './Order'
+import TopArea from './TopArea';
+import ProductList from './ProductList';
+import Order from './Order';
 export default {
   name: 'OrderConfirmation',
-  components: { TopArea, ProductList, Order },
-}
+  components: { TopArea, ProductList, Order }
+};
 </script>
 
 <style lang="scss" scoped>

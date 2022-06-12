@@ -31,17 +31,17 @@
 </template>
 
 <script>
-import { useRoute } from 'vue-router'
-import { useCommonCartEffect } from '../../effects/cartEffects'
+import { useRoute } from 'vue-router';
+import { useCommonCartEffect } from '../../effects/cartEffects';
 export default {
   name: 'ProductList',
-  setup() {
-    const route = useRoute()
-    const shopId = route.params.id
-    const { shopName, productList } = useCommonCartEffect(shopId)
-    return { shopName, productList }
+  setup () {
+    const route = useRoute();
+    const shopId = route.params.id;
+    const { shopName, productList } = useCommonCartEffect(shopId);
+    return { shopName, productList };
   }
-}
+};
 </script>
 
 <style lang="scss" scoped>
