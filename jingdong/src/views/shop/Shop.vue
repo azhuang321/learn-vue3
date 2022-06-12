@@ -19,46 +19,46 @@
 </template>
 
 <script>
-import { reactive, toRefs } from 'vue';
-import { useRouter, useRoute } from 'vue-router';
-import { get } from '../../utils/request';
-import ShopInfo from '../../components/ShopInfo';
-import Content from './Content';
-import Cart from './Cart';
+import { reactive, toRefs } from 'vue'
+import { useRouter, useRoute } from 'vue-router'
+import { get } from '../../utils/request'
+import ShopInfo from '../../components/ShopInfo'
+import Content from './Content'
+import Cart from './Cart'
 
 // 获取当前商铺信息
 const useShopInfoEffect = () => {
-  const route = useRoute();
-  const data = reactive({ item: {} });
+  const route = useRoute()
+  const data = reactive({ item: {} })
   const getItemData = async () => {
-    const result = await get(`/api/shop/${route.params.id}`);
-    if (result?.errno === 0 && result?.data) {
-      data.item = result.data;
+    const result = await get(`/api/shop/${route.params.id}`)
+    if(result?.errno === 0 && result?.data) {
+      data.item = result.data
     }
-  };
-  const { item } = toRefs(data);
-  return { item, getItemData };
-};
+  }
+  const { item } = toRefs(data)
+  return { item, getItemData }
+}
 
 // 点击回退逻辑
 const useBackRouterEffect = () => {
-  const router = useRouter();
+  const router = useRouter()
   const handleBackClick = () => {
-    router.back();
-  };
-  return handleBackClick;
-};
+    router.back()
+  }
+  return handleBackClick
+}
 
 export default {
   name: 'Shop',
   components: { ShopInfo, Content, Cart },
-  setup () {
-    const { item, getItemData } = useShopInfoEffect();
-    const handleBackClick = useBackRouterEffect();
-    getItemData();
-    return { item, handleBackClick };
+  setup() {
+    const { item, getItemData } = useShopInfoEffect()
+    const handleBackClick = useBackRouterEffect()
+    getItemData()
+    return { item, handleBackClick }
   }
-};
+}
 </script>
 
 <style lang="scss" scoped>
