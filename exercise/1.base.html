@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="./vue.global.js"></script>
+</head>
+<body>
+<div id="root"></div>
+</body>
+<!--<script>
+    //创建计数器
+    Vue.createApp({
+        data(){
+            return {
+                content:1
+            }
+        },
+        mounted(){
+            setInterval(()=>{
+                this.$data.content += 1;
+            },1000)
+        },
+        template:`<div>{{content}}</div>`
+    }).mount('#root')
+</script>-->
+
+<!--<script>
+    // demo1  todolist
+    const app = Vue.createApp({
+        data(){
+            return {
+                inputVal:'',
+                list:[],
+            }
+        },
+        methods:{
+            handleAddItem(){
+                this.list.push(this.inputVal)
+                this.inputVal = ''
+            }
+        },
+        template:`
+          <div>
+            <input v-model="inputVal">
+            <button @click="handleAddItem">增加</button>
+            <ul>
+              <li v-for="(item,index) of list">{{index}}-{{item}}</li>
+              <li v-for="(item,index) in list">{{index}}-{{item}}</li>
+            </ul>
+          </div>
+        `
+    });
+
+    const vm = app.mount('#root')
+</script>-->
+
+<!--<script>
+    //demo3 反转
+    Vue.createApp({
+      data() {
+        return {
+          content: 'hello world'
+        }
+      },
+      methods: {
+        handleBtnClick() {
+          this.content = this.content.split('').reverse().join('');
+        }
+      },
+      template: `
+        <div>
+          {{content}}
+          <button v-on:click="handleBtnClick">反转</button>
+        </div>
+      `
+    }).mount('#root');
+</script>-->
+
+
+<!--<script>
+    //demo4
+    Vue.createApp({
+        data() {
+            return { show: true }
+        },
+        methods: {
+            handleBtnClick() {
+                this.show = !this.show;
+            }
+        },
+        template: `
+      <div>
+        <span v-if="show">hello world</span>
+        <button v-on:click="handleBtnClick">显示/隐藏</button>
+      </div>
+    `
+    }).mount('#root');
+</script>-->
+
+
+<!--<script>
+    // 生命周期函数：在某一时刻会自动执行的函数
+    const app = Vue.createApp({
+        data() {
+            return {
+                message: 'hello world'
+            }
+        },
+        // 在实例生成之前会自动执行的函数
+        beforeCreate() {
+            console.log('beforeCreate')
+        },
+        // 在实例生成之后会自动执行的函数
+        created() {
+            console.log('created')
+        },
+        // 在组件内容被渲染到页面之前自动执行的函数
+        beforeMount() {
+            console.log(document.getElementById('root').innerHTML, 'beforeMount')
+        },
+        // 在组件内容被渲染到页面之后自动执行的函数
+        mounted() {
+            console.log(document.getElementById('root').innerHTML, 'mounted')
+        },
+        // 当数据发生变化时会立即自动执行的函数
+        beforeUpdate() {
+            console.log(document.getElementById('root').innerHTML, 'beforeUpdate');
+        },
+        // 当数据发生变化，页面重新渲染后，会自动执行的函数
+        updated() {
+            console.log(document.getElementById('root').innerHTML, 'updated');
+        },
+        // 当 Vue 应用失效是，自动执行的函数
+        beforeUnmount() {
+            console.log(document.getElementById('root').innerHTML, 'beforeUnmount');
+        },
+        // 当 Vue 应用失效时，且 dom 完全销毁之后，自动执行的函数
+        unmounted() {
+            console.log(document.getElementById('root').innerHTML, 'unmounted');
+        },
+    });
+    const vm = app.mount('#root');
+</script>-->
+
+<!--<script>
+    // {{}} 插值表达式
+    // v-html,v-bind(:),v-on(@),动态参数，修饰符
+    const app = Vue.createApp({
+        data(){
+            return {
+                link: "https://www.baidu.com",
+                message: "<h1>hello world</h1>",
+                show: true,
+            }
+        },
+        methods:{
+            handleClick(){
+                alert('click')
+            }
+        },
+        template:`
+          <div v-html="{{message}}'"></div>
+          <div v-show="show">{{message}}</div>
+          <form :action="link" @click.prevent="handleClick">
+          <button type="submit"><strong>提交</strong></button>
+          </form>
+        `
+    });
+
+    const vm = app.mount('#root')
+</script>-->
+
+<!--<script>
+    // 条件表达式
+    const app = Vue.createApp({
+        data(){
+            return {
+                show: true,
+                conditionOne:true,
+                conditionTwo:true,
+            }
+        },
+        template:`
+          <div v-if="show"> show </div>
+          <div v-if="conditionOne"> if </div>
+          <div v-else-if="conditonTwo"> else-if </div>
+          <div v-else> else </div>
+        `
+    });
+
+    const vm = app.mount('#root')
+</script>-->
+
+<!--<script>
+    // demo component todolist
+    // mvvm , vue 实例，vue 组件
+    const app = Vue.createApp({
+        data() {
+            return {
+                inputValue: '',
+                list: []
+            }
+        },
+        methods: {
+            handleAddItem() {
+                this.list.push(this.inputValue);
+                this.inputValue = '';
+            }
+        },
+        template: `
+          <div>
+          <input v-model="inputValue" />
+          <button
+              v-on:click="handleAddItem"
+              v-bind:title="inputValue"
+          >
+            增加
+          </button>
+          <ul>
+            <todo-item
+                v-for="(item, index) of list"
+                v-bind:content="item"
+                v-bind:index="index"
+            />
+          </ul>
+          </div>
+        `
+    });
+
+    app.component('todo-item', {
+        props: ['content', 'index'],
+        template: '<li>{{index}} &#45;&#45; {{content}}</li>'
+    });
+
+    app.mount('#root');
+</script>-->
+
+<!--<script>
+    // 动态改变数据
+    const app = Vue.createApp({
+        data() {
+            return {
+                listArray: ['dell', 'lee', 'teacher'],
+                listObject: {
+                    firstName: 'dell',
+                    lastName: 'lee',
+                    job: 'teacher'
+                }
+            }
+        },
+        methods: {
+            handleAddBtnClick() {
+                // 1. 使用数组的变更函数 push, pop, shift, unshift, splice, sort, reverse
+                // this.listArray.push('hello');
+                // this.listArray.pop();
+                // this.listArray.shift();
+                // this.listArray.unshift('hello');
+                // this.listArray.reverse();
+
+                // 2. 直接替换数组
+                // this.listArray = ['bye', 'world']
+                // this.listArray = ['bye', 'wolrd'].filter(item => item === 'bye');
+
+                // 3. 直接更新数组的内容
+                // this.listArray[1] = 'hello'
+
+                // 直接添加对象的内容，也可以自动的展示出来
+                // this.listObject.age = 100;
+                // this.listObject.sex = 'male';
+            }
+        },
+        template: `
+      <div>
+        <template
+          v-for="(value, key, index) in listObject"
+          :key="index"
+        >
+          <div v-if="key !== 'lastName'">
+            {{value}} &#45;&#45; {{key}}
+          </div>
+        </template>
+        <div v-for="item in 10">{{item}}</div>
+        <button @click="handleAddBtnClick">新增</button>
+      </div>
+    `
+    });
+
+    const vm = app.mount('#root');
+</script>-->
+
+
+<!--<script>
+    // data & methods & computed & watcher
+    // computed 和 method 都能实现的一个功能，建议使用 computed，因为有缓存
+    // computed 和 watcher 都能实现的功能，建议使用 computed 因为更加简洁
+    const app = Vue.createApp({
+        data(){
+            return{
+                message:'hello world',
+                count:2,
+                price:5,
+                total:0,
+                newTotal:10,
+            }
+        },
+        watch:{
+            //price 变动时函数执行
+            price(current,prev) {
+                this.newTotal = current * this.count
+            }
+        },
+        computed:{
+            // 这是一个属性值！！！！ 当计算属性依赖的内容发生变更时，才会重新执行计算
+            total1(){
+                return Date.now() + this.count
+            }
+        },
+        methods:{
+            formatString(string){
+                return string.toUpperCase()
+            },
+            // 只要页面重新渲染，才会重新计算
+            getTotal() {
+                return Date.now();
+                // return this.count * this.price;
+            },
+        },
+        template: `
+          <div>
+          msg:{{formatString(message)}} <br>
+          count:{{count}} <br>
+          price:{{price}} <br>
+          total:{{total}} <br>
+          newTotal:{{newTotal}} </div>
+        `
+    })
+    const vm = app.mount('#root');
+</script>-->
+
+<!--<script>
+    //style 样式
+    const app = Vue.createApp({
+        data() {
+            return {
+                classString: 'red',
+                classObject: { red: false, green: true },
+                classArray: ['red', 'green', {brown: false}],
+                styleString: 'color: yellow;background: orange',
+                styleObject: {
+                    color: 'gray',
+                    background: 'yellow'
+                }
+            }
+        },
+        template: `
+      <div :style="styleObject">
+        Hello World
+      <demo />
+      </div>
+    `
+    });
+
+    app.component('demo', {
+        template: `
+      <div :class="$attrs.class">one</div>
+      <div :class="$attrs.class">two</div>
+    `
+    })
+
+    const vm = app.mount('#root');
+</script>-->
+
+<!--<script>
+    // 修饰符
+    // input, textarea, checkbox, radio, select
+    // 修饰符 lazy, number, trim
+    // event, $event
+    // 事件修饰符：stop, prevent, capture, self, once, passive
+    // 按键修饰符：enter, tab, delete, esc, up, down, left, right
+    // 鼠标修饰符：left, right, middle
+    // 精确修饰符：exact
+    const app = Vue.createApp({
+        data() {
+            return {
+                message: 'hello',
+            }
+        },
+        template: `
+      <div>
+        {{message}}
+        <input v-model.trim="message"  />
+      </div>
+    `
+    });
+
+    const vm = app.mount('#root');
+</script>-->
+
+<script>
+    // 双向绑定  https://v3.cn.vuejs.org/guide/forms.html
+    const app = Vue.createApp({
+        data() {
+            return {
+                message: 'hello',
+                checked:false,
+                checkedNames:[]
+            }
+        },
+        template: `
+      <div>
+        {{message}} <br>
+        <input v-model.trim="message" /> <br>
+        <textarea v-model="message" placeholder="add multiple lines"></textarea><br>
+      </div>
+
+      <div id="v-model-multiple-checkboxes">
+      <input type="checkbox" id="jack" value="Jack" v-model="checkedNames" />
+      <label for="jack">Jack</label>
+      <input type="checkbox" id="john" value="John" v-model="checkedNames" />
+      <label for="john">John</label>
+      <input type="checkbox" id="mike" value="Mike" v-model="checkedNames" />
+      <label for="mike">Mike</label>
+      <br />
+      <span>Checked names: {{ checkedNames }}</span>
+      </div>
+    `
+    });
+
+    const vm = app.mount('#root');
+</script>
+
+
+</html>
